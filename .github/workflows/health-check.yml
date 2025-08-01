@@ -1,0 +1,65 @@
+name: Scheduled Health Check
+
+# Controls when the action will run.
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '30 * * * *'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+jobs:
+  health_check_job:
+    runs-on: ubuntu-latest
+    name: Check all sites
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Shell Script
+        id: shell_script_run
+        run: |
+          bash ./health-check.sh
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add -A --force logs/
+          git commit -am '[Automated] Update Health Check Logs'
+          git push origin main
+        
+
+  # Single deploy job since we're just deploying
+  deploy:
+    needs: health_check_job
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
