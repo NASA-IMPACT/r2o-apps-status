@@ -1,0 +1,47 @@
+[
+  {
+    "key": "burn",
+    "title": "Burn",
+    "status": "active",
+    "statusCode": 200,
+    "taskQueue": "burn_scars-tq",
+    "workflowPollers": 1,
+    "activityPollers": 1
+  },
+  {
+    "key": "crop",
+    "title": "Crop",
+    "status": "active",
+    "statusCode": 200,
+    "taskQueue": "crop_classification-tq",
+    "workflowPollers": 1,
+    "activityPollers": 1
+  },
+  {
+    "key": "flood",
+    "title": "Flood",
+    "status": "active",
+    "statusCode": 200,
+    "taskQueue": "floods-tq",
+    "workflowPollers": 1,
+    "activityPollers": 1
+  },
+  {
+    "key": "orchestrator",
+    "title": "Orchestrator",
+    "status": "active",
+    "statusCode": 200,
+    "taskQueue": "orchestrator-tq",
+    "workflowPollers": 4,
+    "activityPollers": 4
+  },
+  {
+    "key": "surya",
+    "title": "Surya",
+    "status": "inactive",
+    "statusCode": 503,
+    "taskQueue": "surya_rollout-tq",
+    "workflowPollers": 0,
+    "activityPollers": 0
+  }
+]
