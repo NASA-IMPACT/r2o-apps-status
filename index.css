@@ -56,6 +56,7 @@ h3 {
   font-weight: 700;
   margin: 8px 0 4px 0;
 }
+
 h4 {
   color: #3b3b3b;
   font-size: 18px;
@@ -63,6 +64,7 @@ h4 {
   margin-top: 5px;
   margin-bottom: 4px;
 }
+
 h5 {
   color: #3b3b3b;
   font-size: 16px;
@@ -70,6 +72,7 @@ h5 {
   margin-top: 5px;
   margin-bottom: 4px;
 }
+
 h6 {
   color: #3b3b3b;
   font-size: 16px;
@@ -77,6 +80,7 @@ h6 {
   margin-top: 5px;
   margin-bottom: 4px;
 }
+
 a {
   color: #194b7d;
   text-decoration: none;
@@ -125,6 +129,7 @@ footer a {
   display: flex;
   align-items: left;
 }
+
 .headline span {
   background-color: #f5f6f8;
   border-radius: 5px;
@@ -140,10 +145,28 @@ footer a {
   width: 100%;
 }
 
+.reportGroup + .reportGroup {
+  margin-top: 30px;
+}
+
+.reportGroupHeader {
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.reportGroupTitle {
+  margin: 0 0 6px 0;
+  text-transform: uppercase;
+}
+
+.reportGroupUrl {
+  color: #6f7782;
+  font-size: 13px;
+}
+
 .statusContainer {
   border: 1px solid #ededed;
   border-radius: 5px;
-  padding-top: 20px;
   text-align: left;
   padding: 24px;
 }
@@ -151,6 +174,10 @@ footer a {
 .statusContainer + .statusContainer {
   border-top: 1px solid #eee;
   margin-top: 30px;
+}
+
+.reportGroup .statusContainer + .statusContainer {
+  margin-top: 16px;
 }
 
 .statusStreamContainer {
@@ -188,6 +215,7 @@ footer a {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 12px;
   margin-bottom: 12px;
 }
 
@@ -205,6 +233,12 @@ footer a {
   text-align: right;
   color: #7c7c7c;
   font-size: 12px;
+}
+
+.statusMeta {
+  color: #6f7782;
+  font-size: 12px;
+  margin-bottom: 12px;
 }
 
 .uptimeContainer {
@@ -308,6 +342,7 @@ footer a {
 
   .statusHeader,
   .statusSubtitle {
+    align-items: flex-start;
     display: block;
   }
 
@@ -331,5 +366,22 @@ footer a {
   .statusSquare {
     min-width: 4px;
     width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .pageContainer {
+    margin: 32px auto;
+    padding: 24px 18px;
+  }
+
+  .statusHeader,
+  .statusSubtitle {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .statusHeadline {
+    margin-top: 0;
   }
 }

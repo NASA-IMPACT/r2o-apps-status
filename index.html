@@ -9,8 +9,7 @@
     <div class="pageContainer">
       <img class="logo" src="logo.svg" alt="Logo" width="200px" />
       <div class="headline">
-        
-        <span> System Status </span>
+        <span>System Status</span>
       </div>
       <div id="reports" class="reportContainer"></div>
       <div id="tooltip" class="tooltip" style="opacity: 0">
@@ -21,6 +20,15 @@
         <div id="tooltipDescription" class="tooltipDescription"></div>
       </div>
       <div id="templates" style="display: none">
+        <div id="reportGroupTemplate" class="reportGroup">
+          <div class="reportGroupHeader">
+            <h5 class="reportGroupTitle">$title</h5>
+            <div class="reportGroupUrl">
+              Endpoint:
+              <a href="$url" target="_blank" rel="noreferrer">Open endpoint</a>
+            </div>
+          </div>
+        </div>
         <div
           id="statusSquareTemplate"
           class="statusSquare $color"
@@ -37,13 +45,16 @@
             <div class="$color statusHeadline">$status</div>
           </div>
           <div class="statusSubtitle">
-            <div class="sectionUrl">URL: <a href="$url">$title</a></div>
+            <div class="sectionUrl">
+              URL:
+              <a href="$url" target="_blank" rel="noreferrer">Open endpoint</a>
+            </div>
             <div class="statusUptime">$upTime in the last 30 days</div>
           </div>
+          <div class="statusMeta">$details</div>
         </div>
       </div>
     </div>
-
   </body>
   <script>
     genAllReports();

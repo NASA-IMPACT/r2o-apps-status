@@ -1,45 +1,44 @@
 const maxDays = 30;
 
-async function genReportLog(container, key, url) {
-  const response = await fetch("logs/" + key + "_report.log");
+async function genReportLog(container, reportConfig) {
+  const response = await fetch(`logs/${reportConfig.logKey}_report.log`);
   let statusLines = "";
   if (response.ok) {
     statusLines = await response.text();
   }
 
-  
-
   const normalized = normalizeData(statusLines);
-  const statusStream = constructStatusStream(key, url, normalized);
+  const statusStream = constructStatusStream(reportConfig, normalized);
   container.appendChild(statusStream);
-
 }
 
-function constructStatusStream(key, url, uptimeData) {
+function constructStatusStream(reportConfig, uptimeData) {
   let streamContainer = templatize("statusStreamContainerTemplate");
-  let overallReportHealth = 0
 
   for (var ii = maxDays - 1; ii >= 0; ii--) {
-    let line = constructStatusLine(key, ii, uptimeData[ii]);
+    let line = constructStatusLine(reportConfig.title, ii, uptimeData[ii]);
     streamContainer.appendChild(line);
-    if (uptimeData[ii] != undefined) {
-      overallReportHealth = uptimeData[ii]
-    }
-    
-
   }
-  
 
   const lastSet = uptimeData[0];
   const color = getColor(lastSet);
 
   const container = templatize("statusContainerTemplate", {
-    title: key,
-    url: url,
+    title: reportConfig.title,
+    url: reportConfig.url,
     color: color,
     status: getStatusText(color),
     upTime: uptimeData.upTime,
+    details: reportConfig.details || "",
   });
+
+  if (reportConfig.showUrl === false) {
+    container.querySelector(".sectionUrl").remove();
+  }
+
+  if (!reportConfig.details) {
+    container.querySelector(".statusMeta").remove();
+  }
 
   container.appendChild(streamContainer);
   return container;
@@ -112,10 +111,7 @@ function templatizeString(text, parameters) {
   if (parameters) {
     for (const [key, val] of Object.entries(parameters)) {
       text = text.replaceAll("$" + key, val);
-      
     }
-
-    
   }
   return text;
 }
@@ -147,12 +143,6 @@ function getStatusDescriptiveText(color) {
 function getTooltip(key, date, quartile, color) {
   let statusText = getStatusText(color);
   return `${key} | ${date.toDateString()} : ${quartile} : ${statusText}`;
-}
-
-function create(tag, className) {
-  let element = document.createElement(tag);
-  element.className = className;
-  return element;
 }
 
 function normalizeData(statusLines) {
@@ -197,21 +187,22 @@ function splitRowsByDate(rows) {
     }
 
     const [dateTimeStr, resultStr] = row.split(",", 2);
-    const dateTime = new Date(Date.parse(dateTimeStr.replace(/-/g, "/") + " GMT"));
+    const dateTime = new Date(
+      Date.parse(dateTimeStr.replace(/-/g, "/") + " GMT")
+    );
     const dateStr = dateTime.toDateString();
 
     let resultArray = dateValues[dateStr];
     if (!resultArray) {
       resultArray = [];
       dateValues[dateStr] = resultArray;
-      if (dateValues.length > maxDays) {
-        break;
-      }
     }
 
     let result = 0;
     if (resultStr.trim() == "success") {
       result = 1;
+    } else if (resultStr.trim() == "partial") {
+      result = 0.5;
     }
     sum += result;
     count++;
@@ -250,18 +241,111 @@ function hideTooltip() {
   }, 1000);
 }
 
+function titleizeKey(value) {
+  return value
+    .replace(/[_-]+/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function parseConfigLine(configLine) {
+  const separatorIndex = configLine.indexOf("=");
+  if (separatorIndex === -1) {
+    return null;
+  }
+
+  const key = configLine.slice(0, separatorIndex).trim();
+  const url = configLine.slice(separatorIndex + 1).trim();
+  if (!key || !url) {
+    return null;
+  }
+
+  return {
+    key: key,
+    title: titleizeKey(key),
+    url: url,
+  };
+}
+
+async function fetchServiceManifest(key) {
+  try {
+    const response = await fetch(`logs/${key}_services.json`);
+    if (!response.ok) {
+      return [];
+    }
+
+    const serviceData = await response.json();
+    return Array.isArray(serviceData) ? serviceData : [];
+  } catch {
+    return [];
+  }
+}
+
+function buildServiceDetails(service) {
+  const details = [];
+  if (service.statusCode != null) {
+    details.push(`Status code: ${service.statusCode}`);
+  }
+
+  return details.join(" | ");
+}
+
+function normalizeService(service) {
+  if (typeof service === "string") {
+    return {
+      key: service,
+      title: titleizeKey(service),
+      details: "",
+    };
+  }
+
+  return {
+    key: service.key,
+    title: service.title || titleizeKey(service.key),
+    details: buildServiceDetails(service),
+  };
+}
+
+async function genReportGroup(container, reportConfig) {
+  const services = await fetchServiceManifest(reportConfig.key);
+  if (!services.length) {
+    await genReportLog(container, {
+      logKey: reportConfig.key,
+      title: reportConfig.title,
+      url: reportConfig.url,
+      details: "",
+      showUrl: true,
+    });
+    return;
+  }
+
+  const groupContainer = templatize("reportGroupTemplate", {
+    title: reportConfig.title,
+    url: reportConfig.url,
+  });
+  container.appendChild(groupContainer);
+
+  for (let ii = 0; ii < services.length; ii++) {
+    const service = normalizeService(services[ii]);
+    await genReportLog(groupContainer, {
+      logKey: `${reportConfig.key}__${service.key}`,
+      title: service.title,
+      url: reportConfig.url,
+      details: service.details,
+      showUrl: false,
+    });
+  }
+}
+
 async function genAllReports() {
   const response = await fetch("urls.cfg");
   const configText = await response.text();
   const configLines = configText.split("\n");
   for (let ii = 0; ii < configLines.length; ii++) {
-    const configLine = configLines[ii];
-    const [key, url] = configLine.split("=");
-    if (!key || !url) {
+    const reportConfig = parseConfigLine(configLines[ii]);
+    if (!reportConfig) {
       continue;
     }
 
-
-    await genReportLog(document.getElementById("reports"), key, url);
+    await genReportGroup(document.getElementById("reports"), reportConfig);
   }
 }
