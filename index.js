@@ -1,4 +1,5 @@
 const maxDays = 30;
+const dayInMs = 24 * 3600 * 1000;
 
 async function genReportLog(container, reportConfig) {
   const response = await fetch(`logs/${reportConfig.logKey}_report.log`);
@@ -45,8 +46,7 @@ function constructStatusStream(reportConfig, uptimeData) {
 }
 
 function constructStatusLine(key, relDay, upTimeArray) {
-  let date = new Date();
-  date.setDate(date.getDate() - relDay);
+  const date = getUtcDateForRelativeDay(relDay);
 
   return constructStatusSquare(key, date, upTimeArray);
 }
@@ -140,9 +140,9 @@ function getStatusDescriptiveText(color) {
     : "Unknown";
 }
 
-function getTooltip(key, date, quartile, color) {
+function getTooltip(key, date, color) {
   let statusText = getStatusText(color);
-  return `${key} | ${date.toDateString()} : ${quartile} : ${statusText}`;
+  return `${key} | ${formatUtcDate(date)} : ${statusText}`;
 }
 
 function normalizeData(statusLines) {
@@ -150,13 +150,13 @@ function normalizeData(statusLines) {
   const dateNormalized = splitRowsByDate(rows);
 
   let relativeDateMap = {};
-  const now = Date.now();
+  const now = new Date();
   for (const [key, val] of Object.entries(dateNormalized)) {
     if (key == "upTime") {
       continue;
     }
 
-    const relDays = getRelativeDays(now, new Date(key).getTime());
+    const relDays = getRelativeDays(now, new Date(`${key}T00:00:00Z`));
     relativeDateMap[relDays] = getDayAverage(val);
   }
 
@@ -173,7 +173,18 @@ function getDayAverage(val) {
 }
 
 function getRelativeDays(date1, date2) {
-  return Math.floor(Math.abs((date1 - date2) / (24 * 3600 * 1000)));
+  const utcDate1 = Date.UTC(
+    date1.getUTCFullYear(),
+    date1.getUTCMonth(),
+    date1.getUTCDate()
+  );
+  const utcDate2 = Date.UTC(
+    date2.getUTCFullYear(),
+    date2.getUTCMonth(),
+    date2.getUTCDate()
+  );
+
+  return Math.floor((utcDate1 - utcDate2) / dayInMs);
 }
 
 function splitRowsByDate(rows) {
@@ -187,10 +198,8 @@ function splitRowsByDate(rows) {
     }
 
     const [dateTimeStr, resultStr] = row.split(",", 2);
-    const dateTime = new Date(
-      Date.parse(dateTimeStr.replace(/-/g, "/") + " GMT")
-    );
-    const dateStr = dateTime.toDateString();
+    const dateTime = parseLogDate(dateTimeStr);
+    const dateStr = getUtcDayKey(dateTime);
 
     let resultArray = dateValues[dateStr];
     if (!resultArray) {
@@ -215,12 +224,39 @@ function splitRowsByDate(rows) {
   return dateValues;
 }
 
+function parseLogDate(dateTimeStr) {
+  return new Date(Date.parse(dateTimeStr.replace(/-/g, "/") + " GMT"));
+}
+
+function getUtcDayKey(date) {
+  return date.toISOString().slice(0, 10);
+}
+
+function getUtcDateForRelativeDay(relDay) {
+  const now = new Date();
+  return new Date(
+    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - relDay)
+  );
+}
+
+function formatUtcDate(date) {
+  return date.toLocaleDateString(undefined, {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
 let tooltipTimeout = null;
 function showTooltip(element, key, date, color) {
   clearTimeout(tooltipTimeout);
   const toolTipDiv = document.getElementById("tooltip");
 
-  document.getElementById("tooltipDateTime").innerText = date.toDateString();
+  document.getElementById("tooltipDateTime").innerText = `${formatUtcDate(
+    date
+  )} UTC`;
   document.getElementById("tooltipDescription").innerText =
     getStatusDescriptiveText(color);
 
