@@ -38,10 +38,10 @@
   {
     "key": "surya",
     "title": "Surya",
-    "status": "active",
-    "statusCode": 200,
+    "status": "inactive",
+    "statusCode": 503,
     "taskQueue": "surya_rollout-tq",
-    "workflowPollers": 1,
-    "activityPollers": 1
+    "workflowPollers": 0,
+    "activityPollers": 0
   }
 ]
