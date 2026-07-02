@@ -5,8 +5,8 @@
     "status": "active",
     "statusCode": 200,
     "taskQueue": "burn_scars-tq",
-    "workflowPollers": 2,
-    "activityPollers": 2
+    "workflowPollers": 1,
+    "activityPollers": 1
   },
   {
     "key": "crop",
@@ -14,8 +14,8 @@
     "status": "active",
     "statusCode": 200,
     "taskQueue": "crop_classification-tq",
-    "workflowPollers": 2,
-    "activityPollers": 2
+    "workflowPollers": 1,
+    "activityPollers": 1
   },
   {
     "key": "flood",
@@ -23,8 +23,8 @@
     "status": "active",
     "statusCode": 200,
     "taskQueue": "floods-tq",
-    "workflowPollers": 2,
-    "activityPollers": 2
+    "workflowPollers": 1,
+    "activityPollers": 1
   },
   {
     "key": "orchestrator",
