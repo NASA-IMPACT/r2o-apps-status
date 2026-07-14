@@ -32,8 +32,8 @@
     "status": "active",
     "statusCode": 200,
     "taskQueue": "orchestrator-tq",
-    "workflowPollers": 4,
-    "activityPollers": 4
+    "workflowPollers": 6,
+    "activityPollers": 6
   },
   {
     "key": "surya",

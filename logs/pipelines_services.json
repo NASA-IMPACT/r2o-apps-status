@@ -2,25 +2,25 @@
   {
     "key": "burn",
     "title": "Burn",
-    "status": "active",
-    "statusCode": 200
+    "status": "inactive",
+    "statusCode": 503
   },
   {
     "key": "crop",
     "title": "Crop",
-    "status": "active",
-    "statusCode": 200
+    "status": "inactive",
+    "statusCode": 503
   },
   {
     "key": "flood",
     "title": "Flood",
-    "status": "active",
-    "statusCode": 200
+    "status": "inactive",
+    "statusCode": 503
   },
   {
     "key": "surya",
     "title": "Surya",
-    "status": "active",
-    "statusCode": 200
+    "status": "inactive",
+    "statusCode": 503
   }
 ]
