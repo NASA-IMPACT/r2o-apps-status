@@ -20,7 +20,7 @@
   {
     "key": "surya",
     "title": "Surya",
-    "status": "active",
-    "statusCode": 200
+    "status": "inactive",
+    "statusCode": 503
   }
 ]
