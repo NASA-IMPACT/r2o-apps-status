@@ -5,8 +5,8 @@
     "status": "active",
     "statusCode": 200,
     "taskQueue": "burn_scars-tq",
-    "workflowPollers": 1,
-    "activityPollers": 1
+    "workflowPollers": 2,
+    "activityPollers": 2
   },
   {
     "key": "crop",
@@ -14,8 +14,8 @@
     "status": "active",
     "statusCode": 200,
     "taskQueue": "crop_classification-tq",
-    "workflowPollers": 1,
-    "activityPollers": 1
+    "workflowPollers": 2,
+    "activityPollers": 2
   },
   {
     "key": "flood",
@@ -23,8 +23,8 @@
     "status": "active",
     "statusCode": 200,
     "taskQueue": "floods-tq",
-    "workflowPollers": 1,
-    "activityPollers": 1
+    "workflowPollers": 2,
+    "activityPollers": 2
   },
   {
     "key": "orchestrator",
@@ -32,8 +32,8 @@
     "status": "active",
     "statusCode": 200,
     "taskQueue": "orchestrator-tq",
-    "workflowPollers": 4,
-    "activityPollers": 4
+    "workflowPollers": 8,
+    "activityPollers": 8
   },
   {
     "key": "surya",
