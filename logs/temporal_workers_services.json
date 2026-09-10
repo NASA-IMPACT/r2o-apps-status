@@ -29,11 +29,11 @@
   {
     "key": "flood",
     "title": "Flood",
-    "status": "inactive",
-    "statusCode": 503,
+    "status": "active",
+    "statusCode": 200,
     "taskQueue": "floods-tq",
-    "workflowPollers": 0,
-    "activityPollers": 0
+    "workflowPollers": 2,
+    "activityPollers": 2
   },
   {
     "key": "orchestrator",
