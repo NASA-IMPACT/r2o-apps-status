@@ -2,8 +2,8 @@
   {
     "key": "burn",
     "title": "Burn",
-    "status": "inactive",
-    "statusCode": 503
+    "status": "active",
+    "statusCode": 200
   },
   {
     "key": "crater",
@@ -14,8 +14,8 @@
   {
     "key": "crop",
     "title": "Crop",
-    "status": "inactive",
-    "statusCode": 503
+    "status": "active",
+    "statusCode": 200
   },
   {
     "key": "flood",
@@ -26,7 +26,7 @@
   {
     "key": "surya",
     "title": "Surya",
-    "status": "inactive",
-    "statusCode": 503
+    "status": "active",
+    "statusCode": 200
   }
 ]
