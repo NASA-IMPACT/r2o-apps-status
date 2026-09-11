@@ -6,10 +6,16 @@
     "statusCode": 200
   },
   {
-    "key": "crater",
-    "title": "Crater",
-    "status": "inactive",
-    "statusCode": 503
+    "key": "crater_nac",
+    "title": "Crater Nac",
+    "status": "active",
+    "statusCode": 200
+  },
+  {
+    "key": "crater_wac",
+    "title": "Crater Wac",
+    "status": "active",
+    "statusCode": 200
   },
   {
     "key": "crop",
@@ -20,6 +26,18 @@
   {
     "key": "flood",
     "title": "Flood",
+    "status": "active",
+    "statusCode": 200
+  },
+  {
+    "key": "ice_prospectivity",
+    "title": "Ice Prospectivity",
+    "status": "active",
+    "statusCode": 200
+  },
+  {
+    "key": "imp_segmentation",
+    "title": "Imp Segmentation",
     "status": "active",
     "statusCode": 200
   },

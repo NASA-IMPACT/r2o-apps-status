@@ -9,13 +9,22 @@
     "activityPollers": 20
   },
   {
-    "key": "crater",
-    "title": "Crater",
-    "status": "inactive",
-    "statusCode": 503,
-    "taskQueue": "crater_detection-tq",
-    "workflowPollers": 0,
-    "activityPollers": 0
+    "key": "crater_nac",
+    "title": "Crater Nac",
+    "status": "active",
+    "statusCode": 200,
+    "taskQueue": "crater_detection_nac-tq",
+    "workflowPollers": 2,
+    "activityPollers": 2
+  },
+  {
+    "key": "crater_wac",
+    "title": "Crater Wac",
+    "status": "active",
+    "statusCode": 200,
+    "taskQueue": "crater_detection_wac-tq",
+    "workflowPollers": 2,
+    "activityPollers": 2
   },
   {
     "key": "crop",
@@ -34,6 +43,24 @@
     "taskQueue": "floods-tq",
     "workflowPollers": 20,
     "activityPollers": 20
+  },
+  {
+    "key": "ice_prospectivity",
+    "title": "Ice Prospectivity",
+    "status": "active",
+    "statusCode": 200,
+    "taskQueue": "ice_prospectivity-tq",
+    "workflowPollers": 2,
+    "activityPollers": 2
+  },
+  {
+    "key": "imp_segmentation",
+    "title": "Imp Segmentation",
+    "status": "active",
+    "statusCode": 200,
+    "taskQueue": "imp_segmentation-tq",
+    "workflowPollers": 2,
+    "activityPollers": 2
   },
   {
     "key": "orchestrator",
