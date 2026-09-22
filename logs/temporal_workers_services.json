@@ -59,8 +59,8 @@
     "status": "active",
     "statusCode": 200,
     "taskQueue": "imp_segmentation-tq",
-    "workflowPollers": 2,
-    "activityPollers": 2
+    "workflowPollers": 1,
+    "activityPollers": 1
   },
   {
     "key": "orchestrator",
