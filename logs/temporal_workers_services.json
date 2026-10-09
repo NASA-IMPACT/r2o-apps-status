@@ -5,8 +5,8 @@
     "status": "active",
     "statusCode": 200,
     "taskQueue": "burn_scars-tq",
-    "workflowPollers": 20,
-    "activityPollers": 20
+    "workflowPollers": 15,
+    "activityPollers": 15
   },
   {
     "key": "crater_nac",
@@ -41,8 +41,8 @@
     "status": "active",
     "statusCode": 200,
     "taskQueue": "floods-tq",
-    "workflowPollers": 20,
-    "activityPollers": 20
+    "workflowPollers": 15,
+    "activityPollers": 15
   },
   {
     "key": "ice_prospectivity",
