@@ -20,11 +20,11 @@
   {
     "key": "crater_wac",
     "title": "Crater Wac",
-    "status": "active",
-    "statusCode": 200,
+    "status": "inactive",
+    "statusCode": 503,
     "taskQueue": "crater_detection_wac-tq",
     "workflowPollers": 1,
-    "activityPollers": 2
+    "activityPollers": 0
   },
   {
     "key": "crop",
@@ -50,7 +50,7 @@
     "status": "inactive",
     "statusCode": 503,
     "taskQueue": "ice_prospectivity-tq",
-    "workflowPollers": 2,
+    "workflowPollers": 1,
     "activityPollers": 0
   },
   {
@@ -77,7 +77,7 @@
     "status": "inactive",
     "statusCode": 503,
     "taskQueue": "surya_rollout-tq",
-    "workflowPollers": 1,
+    "workflowPollers": 0,
     "activityPollers": 0
   }
 ]
