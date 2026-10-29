@@ -23,7 +23,7 @@
     "status": "active",
     "statusCode": 200,
     "taskQueue": "crater_detection_wac-tq",
-    "workflowPollers": 2,
+    "workflowPollers": 1,
     "activityPollers": 2
   },
   {
@@ -47,20 +47,20 @@
   {
     "key": "ice_prospectivity",
     "title": "Ice Prospectivity",
-    "status": "active",
-    "statusCode": 200,
+    "status": "inactive",
+    "statusCode": 503,
     "taskQueue": "ice_prospectivity-tq",
     "workflowPollers": 2,
-    "activityPollers": 2
+    "activityPollers": 0
   },
   {
     "key": "imp_segmentation",
     "title": "Imp Segmentation",
-    "status": "active",
-    "statusCode": 200,
+    "status": "inactive",
+    "statusCode": 503,
     "taskQueue": "imp_segmentation-tq",
     "workflowPollers": 2,
-    "activityPollers": 2
+    "activityPollers": 0
   },
   {
     "key": "orchestrator",
