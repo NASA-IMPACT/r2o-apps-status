@@ -59,7 +59,7 @@
     "status": "inactive",
     "statusCode": 503,
     "taskQueue": "imp_segmentation-tq",
-    "workflowPollers": 1,
+    "workflowPollers": 2,
     "activityPollers": 0
   },
   {
