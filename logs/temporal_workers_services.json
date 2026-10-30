@@ -14,7 +14,7 @@
     "status": "inactive",
     "statusCode": 503,
     "taskQueue": "crater_detection_nac-tq",
-    "workflowPollers": 1,
+    "workflowPollers": 2,
     "activityPollers": 0
   },
   {
@@ -23,7 +23,7 @@
     "status": "inactive",
     "statusCode": 503,
     "taskQueue": "crater_detection_wac-tq",
-    "workflowPollers": 2,
+    "workflowPollers": 0,
     "activityPollers": 0
   },
   {
@@ -50,7 +50,7 @@
     "status": "inactive",
     "statusCode": 503,
     "taskQueue": "ice_prospectivity-tq",
-    "workflowPollers": 1,
+    "workflowPollers": 2,
     "activityPollers": 0
   },
   {
