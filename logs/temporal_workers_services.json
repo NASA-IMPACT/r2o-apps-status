@@ -50,7 +50,7 @@
     "status": "inactive",
     "statusCode": 503,
     "taskQueue": "ice_prospectivity-tq",
-    "workflowPollers": 1,
+    "workflowPollers": 2,
     "activityPollers": 0
   },
   {
@@ -59,7 +59,7 @@
     "status": "inactive",
     "statusCode": 503,
     "taskQueue": "imp_segmentation-tq",
-    "workflowPollers": 2,
+    "workflowPollers": 1,
     "activityPollers": 0
   },
   {
