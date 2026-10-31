@@ -77,7 +77,7 @@
     "status": "inactive",
     "statusCode": 503,
     "taskQueue": "surya_rollout-tq",
-    "workflowPollers": 1,
+    "workflowPollers": 0,
     "activityPollers": 0
   }
 ]
