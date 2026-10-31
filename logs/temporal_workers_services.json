@@ -14,7 +14,7 @@
     "status": "inactive",
     "statusCode": 503,
     "taskQueue": "crater_detection_nac-tq",
-    "workflowPollers": 2,
+    "workflowPollers": 1,
     "activityPollers": 0
   },
   {
@@ -77,7 +77,7 @@
     "status": "inactive",
     "statusCode": 503,
     "taskQueue": "surya_rollout-tq",
-    "workflowPollers": 0,
+    "workflowPollers": 1,
     "activityPollers": 0
   }
 ]
