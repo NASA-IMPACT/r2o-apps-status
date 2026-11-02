@@ -11,20 +11,20 @@
   {
     "key": "crater_nac",
     "title": "Crater Nac",
-    "status": "inactive",
-    "statusCode": 503,
+    "status": "active",
+    "statusCode": 200,
     "taskQueue": "crater_detection_nac-tq",
     "workflowPollers": 2,
-    "activityPollers": 0
+    "activityPollers": 2
   },
   {
     "key": "crater_wac",
     "title": "Crater Wac",
-    "status": "inactive",
-    "statusCode": 503,
+    "status": "active",
+    "statusCode": 200,
     "taskQueue": "crater_detection_wac-tq",
-    "workflowPollers": 1,
-    "activityPollers": 0
+    "workflowPollers": 2,
+    "activityPollers": 2
   },
   {
     "key": "crop",
@@ -47,20 +47,20 @@
   {
     "key": "ice_prospectivity",
     "title": "Ice Prospectivity",
-    "status": "inactive",
-    "statusCode": 503,
+    "status": "active",
+    "statusCode": 200,
     "taskQueue": "ice_prospectivity-tq",
     "workflowPollers": 2,
-    "activityPollers": 0
+    "activityPollers": 2
   },
   {
     "key": "imp_segmentation",
     "title": "Imp Segmentation",
-    "status": "inactive",
-    "statusCode": 503,
+    "status": "active",
+    "statusCode": 200,
     "taskQueue": "imp_segmentation-tq",
     "workflowPollers": 2,
-    "activityPollers": 0
+    "activityPollers": 2
   },
   {
     "key": "orchestrator",
@@ -74,10 +74,10 @@
   {
     "key": "surya",
     "title": "Surya",
-    "status": "inactive",
-    "statusCode": 503,
+    "status": "active",
+    "statusCode": 200,
     "taskQueue": "surya_rollout-tq",
     "workflowPollers": 1,
-    "activityPollers": 0
+    "activityPollers": 1
   }
 ]
