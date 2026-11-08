@@ -15,7 +15,7 @@
     "statusCode": 200,
     "taskQueue": "crater_detection_nac-tq",
     "workflowPollers": 2,
-    "activityPollers": 2
+    "activityPollers": 1
   },
   {
     "key": "crater_wac",
@@ -60,7 +60,7 @@
     "statusCode": 200,
     "taskQueue": "imp_segmentation-tq",
     "workflowPollers": 2,
-    "activityPollers": 2
+    "activityPollers": 1
   },
   {
     "key": "orchestrator",
@@ -74,10 +74,10 @@
   {
     "key": "surya",
     "title": "Surya",
-    "status": "active",
-    "statusCode": 200,
+    "status": "inactive",
+    "statusCode": 503,
     "taskQueue": "surya_rollout-tq",
-    "workflowPollers": 1,
-    "activityPollers": 1
+    "workflowPollers": 0,
+    "activityPollers": 0
   }
 ]
