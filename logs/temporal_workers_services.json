@@ -14,17 +14,17 @@
     "status": "inactive",
     "statusCode": 503,
     "taskQueue": "crater_detection_nac-tq",
-    "workflowPollers": 1,
+    "workflowPollers": 2,
     "activityPollers": 0
   },
   {
     "key": "crater_wac",
     "title": "Crater Wac",
-    "status": "active",
-    "statusCode": 200,
+    "status": "inactive",
+    "statusCode": 503,
     "taskQueue": "crater_detection_wac-tq",
     "workflowPollers": 2,
-    "activityPollers": 2
+    "activityPollers": 0
   },
   {
     "key": "crop",
@@ -47,11 +47,11 @@
   {
     "key": "ice_prospectivity",
     "title": "Ice Prospectivity",
-    "status": "active",
-    "statusCode": 200,
+    "status": "inactive",
+    "statusCode": 503,
     "taskQueue": "ice_prospectivity-tq",
-    "workflowPollers": 2,
-    "activityPollers": 2
+    "workflowPollers": 1,
+    "activityPollers": 0
   },
   {
     "key": "imp_segmentation",
@@ -77,7 +77,7 @@
     "status": "inactive",
     "statusCode": 503,
     "taskQueue": "surya_rollout-tq",
-    "workflowPollers": 1,
+    "workflowPollers": 0,
     "activityPollers": 0
   }
 ]
