@@ -60,7 +60,7 @@
     "statusCode": 200,
     "taskQueue": "imp_segmentation-tq",
     "workflowPollers": 2,
-    "activityPollers": 2
+    "activityPollers": 1
   },
   {
     "key": "orchestrator",
