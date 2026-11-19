@@ -15,7 +15,7 @@
     "statusCode": 200,
     "taskQueue": "crater_detection_nac-tq",
     "workflowPollers": 2,
-    "activityPollers": 2
+    "activityPollers": 1
   },
   {
     "key": "crater_wac",
